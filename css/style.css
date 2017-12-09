@@ -1351,6 +1351,13 @@ pre .javascript .function {
 .widget ol ol {
   list-style: decimal;
 }
+.widget img {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  top: 5px;
+}
 .category-list-count,
 .tag-list-count,
 .archive-list-count {
