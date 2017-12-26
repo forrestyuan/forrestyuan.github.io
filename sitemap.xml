@@ -3,7 +3,7 @@
 
     <sitemap>
         <loc>https://forrestyuan.github.io/post-sitemap.xml</loc>
-        <lastmod>2017-12-09T13:08:14.961Z</lastmod>
+        <lastmod>2017-12-26T04:22:33.401Z</lastmod>
     </sitemap>
 
     <sitemap>
@@ -12,13 +12,8 @@
     </sitemap>
 
     <sitemap>
-        <loc>https://forrestyuan.github.io/category-sitemap.xml</loc>
-        <lastmod>2017-12-09T13:08:14.961Z</lastmod>
-    </sitemap>
-
-    <sitemap>
         <loc>https://forrestyuan.github.io/tag-sitemap.xml</loc>
-        <lastmod>2017-12-09T13:08:14.961Z</lastmod>
+        <lastmod>2017-12-26T04:22:33.401Z</lastmod>
     </sitemap>
 
 </sitemapindex>

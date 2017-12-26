@@ -1,45 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title><![CDATA[初次使用HEXO]]></title>
-      <url>/2017/12/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8HEXO/</url>
-      <content type="html"><![CDATA[<h1 id="Hexo-的安装和使用"><a href="#Hexo-的安装和使用" class="headerlink" title="Hexo 的安装和使用"></a>Hexo 的安装和使用</h1><p>测试文章，部署成功</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 网站/博客搭建 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 随笔 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>/2017/12/09/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      
-        
-    </entry>
-    
-  
-  
+<search>
+  <entry>
+    <title><![CDATA[GitHub SSH Key的设置]]></title>
+    <url>%2F2017%2F12%2F26%2FGitHub-SSH-Key%E7%9A%84%E8%AE%BE%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[GitHub SSH Key的设置一、开通github账号首先前往github 官网创建一个账号。（根据官网提示操作） 二、关于SSH KeyGitHub 上链接已有仓库时的认证，是通过使用SSH的公开密钥认证方式进行的。现在让我们来创建公开密钥认证所需要的SSH Key,并将其添加到GitHub. SSH key提供了一种与GitHub通信的方式，通过这种方式，能够在不输入密码的情况下，将GitHub作为自己的remote端服务器，进行版本控制 三、设置步骤 检查SSH keys是否存在 （如不存在）生成新的ssh key 将ssh key添加到GitHub中 1、检查SSH keys12ls -al ~/.ssh# Lists the files in your .ssh directory, if they exist 2、运行下面的命令创建SSH key：12345678$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;# Creates a new ssh key using the provided emailGenerating public/privater rsas key pair.Enter file in which to save the key(/Users/your_user_directory/.ssh/id_rsa):(按回车键)Enter passphrase (empty for no passphrase):(输入密码)Enter same passphrase again:(再次输入密码) &quot;your_email@example.com&quot;的部分改成您在创建github账户时用的邮箱地址，棉麻需要在认证时输入，请选择复杂度高并且容易记忆的组合。 输入密码后会出现如下结果： 1234567891011Your identification has been saved in /Users/your_user_directory/.ssh/id_rsa.Your identification has been saved in/Users/your_user_directory/.ssh/id_rsa.The key fingerprint is:(fingerprint 的值)your_email@example.comThe Key&apos;s randomart image is:+--[ RAS 2048 ]----+| .+ + || = o O . |.... id_rsa文件是私有密钥，id_rsa.pub是公开密钥。 3、添加公开密钥在github中添加公开密钥，用自己喜欢的文本编辑器打开id_rsa.pub文件，里面的信息即为SSH key，将这些信息复制到GitHub的Add SSH key页面即可。 完成添加后，就可以用手中的私人密钥与github进行认证通信了。 1234$ ssh -T git@github.comThe authenticity of host &apos;github.com(207.97.227.239)&apos; cnt&apos;t be established. RSA key fingerprint is (fingerprint的值) Are you sure you want to coninue connnection(yes/no)? (输入yes) 出现如下结果即为成功。 1Hi hirocastest! You&apos;ve successfully authenticated, but GitHub does not provide shell access.]]></content>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F12%2F09%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
 </search>

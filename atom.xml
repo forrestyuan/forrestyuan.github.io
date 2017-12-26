@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://forrestyuan.github.io/"/>
-  <updated>2017-12-09T13:08:14.961Z</updated>
+  <updated>2017-12-26T04:22:33.401Z</updated>
   <id>https://forrestyuan.github.io/</id>
   
   <author>
@@ -17,28 +17,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>初次使用HEXO</title>
-    <link href="https://forrestyuan.github.io/2017/12/09/%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8HEXO/"/>
-    <id>https://forrestyuan.github.io/2017/12/09/初次使用HEXO/</id>
-    <published>2017-12-09T11:46:14.000Z</published>
-    <updated>2017-12-09T13:08:14.961Z</updated>
+    <title>GitHub SSH Key的设置</title>
+    <link href="https://forrestyuan.github.io/2017/12/26/GitHub-SSH-Key%E7%9A%84%E8%AE%BE%E7%BD%AE/"/>
+    <id>https://forrestyuan.github.io/2017/12/26/GitHub-SSH-Key的设置/</id>
+    <published>2017-12-26T04:20:58.000Z</published>
+    <updated>2017-12-26T04:22:33.401Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Hexo-的安装和使用"><a href="#Hexo-的安装和使用" class="headerlink" title="Hexo 的安装和使用"></a>Hexo 的安装和使用</h1><p>测试文章，部署成功</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="GitHub-SSH-Key的设置"><a href="#GitHub-SSH-Key的设置" class="headerlink" title="GitHub SSH Key的设置"></a>GitHub SSH Key的设置</h1><h2 id="一、开通github账号"><a href="#一、开通github账号" class="headerlink" title="一、开通github账号"></a>一、开通github账号</h2><p>首先前往github 官网创建一个账号。（根据官网提示操作）</p><h2 id="二、关于SSH-Key"><a href="#二、关于SSH-Key" class="headerlink" title="二、关于SSH Key"></a>二、关于SSH Key</h2><p>GitHub 上链接已有仓库时的认证，是通过使用SSH的公开密钥认证方式进行的。现在让我们来创建公开密钥认证所需要的SSH Key,并将其添加到GitHub.</p><p>SSH key提供了一种与GitHub通信的方式，通过这种方式，能够在不输入密码的情况下，将GitHub作为自己的remote端服务器，进行版本控制</p><h2 id="三、设置步骤"><a href="#三、设置步骤" class="headerlink" title="三、设置步骤"></a>三、设置步骤</h2><ul><li>检查SSH keys是否存在</li><li>（如不存在）生成新的ssh key</li><li>将ssh key添加到GitHub中</li></ul><h3 id="1、检查SSH-keys"><a href="#1、检查SSH-keys" class="headerlink" title="1、检查SSH keys"></a>1、检查SSH keys</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -al ~/.ssh</span><br><span class="line"># Lists the files in your .ssh directory, if they exist</span><br></pre></td></tr></table></figure><h3 id="2、运行下面的命令创建SSH-key："><a href="#2、运行下面的命令创建SSH-key：" class="headerlink" title="2、运行下面的命令创建SSH key："></a>2、运行下面的命令创建SSH key：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br><span class="line"></span><br><span class="line"># Creates a new ssh key using the provided email</span><br><span class="line">Generating public/privater rsas key pair.</span><br><span class="line">Enter file in which to save the key</span><br><span class="line">(/Users/your_user_directory/.ssh/id_rsa):(按回车键)</span><br><span class="line">Enter passphrase (empty for no passphrase):(输入密码)</span><br><span class="line">Enter same passphrase again:(再次输入密码)</span><br></pre></td></tr></table></figure><p><code>&quot;your_email@example.com&quot;</code>的部分改成您在创建github账户时用的邮箱地址，棉麻需要在认证时输入，请选择复杂度高并且容易记忆的组合。</p><p>输入密码后会出现如下结果：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in /Users/your_user_directory/.ssh/id_rsa.</span><br><span class="line"></span><br><span class="line">Your identification has been saved in/Users/your_user_directory/.ssh/id_rsa.</span><br><span class="line"></span><br><span class="line">The key fingerprint is:</span><br><span class="line">(fingerprint 的值)your_email@example.com</span><br><span class="line">The Key&apos;s randomart image is:</span><br><span class="line">+--[ RAS 2048 ]----+</span><br><span class="line">|     .+    +      |</span><br><span class="line">|       = o O .    |</span><br><span class="line">....</span><br></pre></td></tr></table></figure><p>id_rsa文件是私有密钥，id_rsa.pub是公开密钥。</p><h3 id="3、添加公开密钥"><a href="#3、添加公开密钥" class="headerlink" title="3、添加公开密钥"></a>3、添加公开密钥</h3><p>在github中添加公开密钥，用自己喜欢的文本编辑器打开id_rsa.pub文件，里面的信息即为SSH key，将这些信息复制到GitHub的Add SSH key页面即可。</p><p>完成添加后，就可以用手中的私人密钥与github进行认证通信了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line">The authenticity of host &apos;github.com(207.97.227.239)&apos; cnt&apos;t be established.  </span><br><span class="line">RSA key fingerprint is (fingerprint的值)  </span><br><span class="line">Are you sure you want to coninue connnection(yes/no)? (输入yes)</span><br></pre></td></tr></table></figure><p>出现如下结果即为成功。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi hirocastest! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;Hexo-的安装和使用&quot;&gt;&lt;a href=&quot;#Hexo-的安装和使用&quot; class=&quot;headerlink&quot; title=&quot;Hexo 的安装和使用&quot;&gt;&lt;/a&gt;Hexo 的安装和使用&lt;/h1&gt;&lt;p&gt;测试文章，部署成功&lt;/p&gt;
-
+        &lt;h1 id=&quot;GitHub-SSH-Key的设置&quot;&gt;&lt;a href=&quot;#GitHub-SSH-Key的设置&quot; class=&quot;headerlink&quot; title=&quot;GitHub SSH Key的设置&quot;&gt;&lt;/a&gt;GitHub SSH Key的设置&lt;/h1&gt;&lt;h2 id=&quot;一、开通g
       
     
     </summary>
     
-      <category term="网站/博客搭建" scheme="https://forrestyuan.github.io/categories/%E7%BD%91%E7%AB%99-%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     
-    
-      <category term="随笔" scheme="https://forrestyuan.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="github" scheme="https://forrestyuan.github.io/tags/github/"/>
     
   </entry>
   
