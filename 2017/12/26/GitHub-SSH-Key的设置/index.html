@@ -93,10 +93,12 @@
 <meta property="og:site_name" content="前端小生">
 <meta property="og:description" content="GitHub SSH Key的设置一、开通github账号首先前往github 官网创建一个账号。（根据官网提示操作） 二、关于SSH KeyGitHub 上链接已有仓库时的认证，是通过使用SSH的公开密钥认证方式进行的。现在让我们来创建公开密钥认证所需要的SSH Key,并将其添加到GitHub. SSH key提供了一种与GitHub通信的方式，通过这种方式，能够在不输入密码的情况下，将Git">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-26T04:22:33.401Z">
+<meta property="og:image" content="http://ozxcv3zng.bkt.clouddn.com/gevin-essay-how-to-generate-SSH-key.png">
+<meta property="og:updated_time" content="2017-12-26T05:07:40.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub SSH Key的设置">
 <meta name="twitter:description" content="GitHub SSH Key的设置一、开通github账号首先前往github 官网创建一个账号。（根据官网提示操作） 二、关于SSH KeyGitHub 上链接已有仓库时的认证，是通过使用SSH的公开密钥认证方式进行的。现在让我们来创建公开密钥认证所需要的SSH Key,并将其添加到GitHub. SSH key提供了一种与GitHub通信的方式，通过这种方式，能够在不输入密码的情况下，将Git">
+<meta name="twitter:image" content="http://ozxcv3zng.bkt.clouddn.com/gevin-essay-how-to-generate-SSH-key.png">
 
 
 
@@ -378,6 +380,7 @@
 <li>（如不存在）生成新的ssh key</li>
 <li>将ssh key添加到GitHub中</li>
 </ul>
+<p><img src="http://ozxcv3zng.bkt.clouddn.com/gevin-essay-how-to-generate-SSH-key.png" alt="流程图"></p>
 <h3 id="1、检查SSH-keys"><a href="#1、检查SSH-keys" class="headerlink" title="1、检查SSH keys"></a>1、检查SSH keys</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -al ~/.ssh</span><br><span class="line"># Lists the files in your .ssh directory, if they exist</span><br></pre></td></tr></table></figure>
 <h3 id="2、运行下面的命令创建SSH-key："><a href="#2、运行下面的命令创建SSH-key：" class="headerlink" title="2、运行下面的命令创建SSH key："></a>2、运行下面的命令创建SSH key：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br><span class="line"></span><br><span class="line"># Creates a new ssh key using the provided email</span><br><span class="line">Generating public/privater rsas key pair.</span><br><span class="line">Enter file in which to save the key</span><br><span class="line">(/Users/your_user_directory/.ssh/id_rsa):(按回车键)</span><br><span class="line">Enter passphrase (empty for no passphrase):(输入密码)</span><br><span class="line">Enter same passphrase again:(再次输入密码)</span><br></pre></td></tr></table></figure>
 <p><code>&quot;your_email@example.com&quot;</code>的部分改成您在创建github账户时用的邮箱地址，棉麻需要在认证时输入，请选择复杂度高并且容易记忆的组合。</p>
