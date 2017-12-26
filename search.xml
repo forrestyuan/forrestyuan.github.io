@@ -1,57 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title><![CDATA[GitHub SSH Key的设置]]></title>
-      <url>/2017/12/26/GitHub-SSH-Key%E7%9A%84%E8%AE%BE%E7%BD%AE/</url>
-      <content type="html"><![CDATA[<h1 id="GitHub-SSH-Key的设置"><a href="#GitHub-SSH-Key的设置" class="headerlink" title="GitHub SSH Key的设置"></a>GitHub SSH Key的设置</h1><h2 id="一、开通github账号"><a href="#一、开通github账号" class="headerlink" title="一、开通github账号"></a>一、开通github账号</h2><p>首先前往github 官网创建一个账号。（根据官网提示操作）</p>
-<h2 id="二、关于SSH-Key"><a href="#二、关于SSH-Key" class="headerlink" title="二、关于SSH Key"></a>二、关于SSH Key</h2><p>GitHub 上链接已有仓库时的认证，是通过使用SSH的公开密钥认证方式进行的。现在让我们来创建公开密钥认证所需要的SSH Key,并将其添加到GitHub.</p>
-<p>SSH key提供了一种与GitHub通信的方式，通过这种方式，能够在不输入密码的情况下，将GitHub作为自己的remote端服务器，进行版本控制</p>
-<h2 id="三、设置步骤"><a href="#三、设置步骤" class="headerlink" title="三、设置步骤"></a>三、设置步骤</h2><ul>
-<li>检查SSH keys是否存在</li>
-<li>（如不存在）生成新的ssh key</li>
-<li>将ssh key添加到GitHub中</li>
-</ul>
-<p><img src="http://ozxcv3zng.bkt.clouddn.com/gevin-essay-how-to-generate-SSH-key.png" alt="流程图"></p>
-<h3 id="1、检查SSH-keys"><a href="#1、检查SSH-keys" class="headerlink" title="1、检查SSH keys"></a>1、检查SSH keys</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -al ~/.ssh</span><br><span class="line"># Lists the files in your .ssh directory, if they exist</span><br></pre></td></tr></table></figure>
-<h3 id="2、运行下面的命令创建SSH-key："><a href="#2、运行下面的命令创建SSH-key：" class="headerlink" title="2、运行下面的命令创建SSH key："></a>2、运行下面的命令创建SSH key：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br><span class="line"></span><br><span class="line"># Creates a new ssh key using the provided email</span><br><span class="line">Generating public/privater rsas key pair.</span><br><span class="line">Enter file in which to save the key</span><br><span class="line">(/Users/your_user_directory/.ssh/id_rsa):(按回车键)</span><br><span class="line">Enter passphrase (empty for no passphrase):(输入密码)</span><br><span class="line">Enter same passphrase again:(再次输入密码)</span><br></pre></td></tr></table></figure>
-<p><code>&quot;your_email@example.com&quot;</code>的部分改成您在创建github账户时用的邮箱地址，棉麻需要在认证时输入，请选择复杂度高并且容易记忆的组合。</p>
-<p>输入密码后会出现如下结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in /Users/your_user_directory/.ssh/id_rsa.</span><br><span class="line"></span><br><span class="line">Your identification has been saved in/Users/your_user_directory/.ssh/id_rsa.</span><br><span class="line"></span><br><span class="line">The key fingerprint is:</span><br><span class="line">(fingerprint 的值)your_email@example.com</span><br><span class="line">The Key&apos;s randomart image is:</span><br><span class="line">+--[ RAS 2048 ]----+</span><br><span class="line">|     .+    +      |</span><br><span class="line">|       = o O .    |</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
-<p>id_rsa文件是私有密钥，id_rsa.pub是公开密钥。</p>
-<h3 id="3、添加公开密钥"><a href="#3、添加公开密钥" class="headerlink" title="3、添加公开密钥"></a>3、添加公开密钥</h3><p>在github中添加公开密钥，用自己喜欢的文本编辑器打开id_rsa.pub文件，里面的信息即为SSH key，将这些信息复制到GitHub的Add SSH key页面即可。</p>
-<p>完成添加后，就可以用手中的私人密钥与github进行认证通信了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line">The authenticity of host &apos;github.com(207.97.227.239)&apos; cnt&apos;t be established.  </span><br><span class="line">RSA key fingerprint is (fingerprint的值)  </span><br><span class="line">Are you sure you want to coninue connnection(yes/no)? (输入yes)</span><br></pre></td></tr></table></figure>
-<p>出现如下结果即为成功。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi hirocastest! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>]]></content>
-      
-        
-        <tags>
-            
-            <tag> github </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>/2017/12/09/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      
-        
-    </entry>
-    
-  
-  
+<search>
+  <entry>
+    <title><![CDATA[git 的操作指令]]></title>
+    <url>%2F2017%2F12%2F26%2Fgit-%E7%9A%84%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[git的使用一、git的基本操作1、git init –初始化仓库要使用Git进行版本管理，必须先初始化仓库。Git是使用 git init 命令初始化的。建立一个目录并初始化仓库： 1234$ mkdir git-tutorial$ cd git-tutorial$ git init...初始化信息提示 如果初始化成功,执行了git init命令的目录下就会生成.git目录。这个.git目录里存储着管理当前目录内容所需的仓库数据。 2、 git status –查看仓库的状态git status 命令用于显示Git仓库的状态。这是一个十分常用的命令，务必牢记。工作树和仓库在被操作的过程中，状态会不断发生变化。在Git操作过程中时常使用此命令查看状态。 123456$ git status#On branch master##Initial commit#nothing to commit(create/copy files and use "git add" to break) 上述执行了命令后的结果显示，当前正处于master 分支下。并且表示尚没有可提交的内容。我们可以在项目仓库目录下创建一个readme.md文件： 123456789$ touch README.md$ git status# On branch master## Initial commit## Unctracked files:# (use "git add &lt;file&gt;..." to include in what will be committed)## README.mdnothing added to commit but untracked files present(use "git add "to track) 可以看到在Untracked files 中显示了 README.md 文件。类似的，只要对Git的工作树或仓库进行操作，git status 命令的显示结果就会发生变化。 3、 git add –向暂存区添加文件仅用git仓库的工作树创建了文件，该文件并不会被记入Git 仓库的版本管理对象中。要想让文件成为Git仓库的管理对象，就需要用 git add命令将其加入暂存区（Stage 或者 Index）中。暂存区是提交之前的一个临时区域。 $ git add README.md 4、 git commit –保存仓库的历史记录git commit 命令可以将当前暂存区中的文件实际保存到仓库的历史记录中。 1$ git commit -m "First commit" -m参数后的”First commit”称作提交信息，是对这个提交的概述。 5、 git log –查看提交日志git log 命令可以查看以往仓库提交的日志。包括可以查看什么人在什么时候进行了提交或合并，以及操作前后有怎样的差别。关于合并我们会在后面解说。 1234$ git logcommit xxxxAuthor: ****Date: sun May 5 16:06:49 2013 +0900 如上所示,commit栏显示的提交的哈希值。Git的其他命令中在指向提交时会用到这个哈希值。Author栏显示的提交的用户名和邮箱地址。Date栏中显示提交执行的日期和时间。再往下就是提交的信息。 6、 git diff –查看更改前后的差别git diff 命令可以查看工作树，暂存区，最新提交之间的区别。在README.md中写点东西 # Git 教程执行git diff,查看当前工作树和暂存区的差别。 12345678$ git diffdiff --git a/README.md b/README.mdindex (hash 值)--- a/README.md+++ b/README.md@@ -0 , 0 +1 @@+# Git教程 其中”+”表示新增加的行，”-“表示被删除的行。 二、git分支的操作在进行多个并行作业是，常会用到分支。不同的分支中可以同时进行完全不同的作业。等该分支的作业完成后再与master分支合并。 1、git branch –显示分支一览表git branch 命令可以将分支名列表显示，同时可以确认当前所在分支。 12$ git branch* master 上面的*号表示当前处于master 分支下，且在该分支下进行开发，而且当前仅有一个master 分支。 2、git checkout -b –创建、切换分支如果想以当前的master分支为基础创建新的分支，我们需要用到git checkout -b 命令 123456$git checkout -b feature-a#Switched to a new branch 'feature-a'等同于$ git branch feature-a$ git checkout feature-a表示创建分支并切换分支。 3、git merge –合并分支分支在功能特性开发完成后，往往需要讲这些特性添加到主分支中，此时就需要将分支合并。 首先切换到主分支master分支 12$ git checkout master#Switched to branch 'master' 合并分支 $ git merge --no-ff feature-a 三、更改提交的操作1、git reset –回溯历史版本12$ git reset --hard &lt;hash值&gt;#HEAD is now at **** Add index 2、消除冲突假如此时有两个分支，A和B ，A分支里的README.md 里有aaa内容，B分支里的README.md里有bbb内容，此时，A分支更改的部分与本次想要合并的fix-B分支更改的部分发生冲突。解决冲突：打开冲突文件更改冲突的部分。 四、推送至远程仓库1、git remote add –添加远程仓库git remote add origin &lt;远程仓库地址&gt; 2、git push –推送至远程仓库 推送至master分支：$ git push -u origin master 推送至master以外的分支： 12$ git checkout -b feature-a$ git push -u origin feature 如果执行git remote add origin &lt;远程仓库地址&gt;，出现错误：fatal: remote origin already exists 则执行以下语句：git remote rm origin再往后执行git remote add origin &lt;远程仓库地址&gt;即可. 在执行git push -u origin feature时，报错：error:failed to push som refs to.......则执行以下语句：git pull origin master先把远程服务器github上面的文件拉先来，再push 上去。 五、从远程仓库获取1、git clone –获取远程仓库git clone &lt;仓库远程地址&gt; 2、git pull –获取最新远程仓库分支$ git pull origin feature-a 六、推荐： Pro Git (一部零基础的Git学习资料) LearnGitBranching（学习git基本操作的网站） tryGit（可以以便操作一边学习Git的基本功能）]]></content>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[GitHub SSH Key的设置]]></title>
+    <url>%2F2017%2F12%2F26%2FGitHub-SSH-Key%E7%9A%84%E8%AE%BE%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[GitHub SSH Key的设置一、开通github账号首先前往github 官网创建一个账号。（根据官网提示操作） 二、关于SSH KeyGitHub 上链接已有仓库时的认证，是通过使用SSH的公开密钥认证方式进行的。现在让我们来创建公开密钥认证所需要的SSH Key,并将其添加到GitHub. SSH key提供了一种与GitHub通信的方式，通过这种方式，能够在不输入密码的情况下，将GitHub作为自己的remote端服务器，进行版本控制 三、设置步骤 检查SSH keys是否存在 （如不存在）生成新的ssh key 将ssh key添加到GitHub中 1、检查SSH keys12ls -al ~/.ssh# Lists the files in your .ssh directory, if they exist 2、运行下面的命令创建SSH key：12345678$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;# Creates a new ssh key using the provided emailGenerating public/privater rsas key pair.Enter file in which to save the key(/Users/your_user_directory/.ssh/id_rsa):(按回车键)Enter passphrase (empty for no passphrase):(输入密码)Enter same passphrase again:(再次输入密码) &quot;your_email@example.com&quot;的部分改成您在创建github账户时用的邮箱地址，棉麻需要在认证时输入，请选择复杂度高并且容易记忆的组合。 输入密码后会出现如下结果： 1234567891011Your identification has been saved in /Users/your_user_directory/.ssh/id_rsa.Your identification has been saved in/Users/your_user_directory/.ssh/id_rsa.The key fingerprint is:(fingerprint 的值)your_email@example.comThe Key&apos;s randomart image is:+--[ RAS 2048 ]----+| .+ + || = o O . |.... id_rsa文件是私有密钥，id_rsa.pub是公开密钥。 3、添加公开密钥在github中添加公开密钥，用自己喜欢的文本编辑器打开id_rsa.pub文件，里面的信息即为SSH key，将这些信息复制到GitHub的Add SSH key页面即可。 完成添加后，就可以用手中的私人密钥与github进行认证通信了。 1234$ ssh -T git@github.comThe authenticity of host &apos;github.com(207.97.227.239)&apos; cnt&apos;t be established. RSA key fingerprint is (fingerprint的值) Are you sure you want to coninue connnection(yes/no)? (输入yes) 出现如下结果即为成功。 1Hi hirocastest! You&apos;ve successfully authenticated, but GitHub does not provide shell access.]]></content>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F12%2F09%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
 </search>
