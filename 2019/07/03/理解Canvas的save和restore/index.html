@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="web,html,css,js,hexo,前端开发,博客搭建,全栈工程师,博客,初心日志,vue,node">
+  <meta name="keywords" content="web前端,">
 
 
 
@@ -85,16 +85,21 @@
 
 
 
-<meta name="description" content="前端小生，慢慢地敲啊敲，HTML，CSS,JAVSCRIPT,VUE。一入前端深似海，从此代码伴我闯荡！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="前端小生">
-<meta property="og:url" content="https://forrestyuan.github.io/tags/前端大法/index.html">
+<meta name="description" content="🙂简述之前写过一个基于canvas实现的共享写作画板应用，当时在写这个应用的有画板绘制的“前进”和“后退”功能，当时查了MDN上的Canvas文档，看到了有save()和restore()两个方法。文档上是这样解释的使用 save() 方法保存默认的状态，使用 restore()进行恢复当时寻思着或许可以用这两个方法实现，可是最后哦用的时候却与预期的结果截然相反。这篇文章我们来了解一下Cavas">
+<meta name="keywords" content="web前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解canvas的save和restore">
+<meta property="og:url" content="https://forrestyuan.github.io/2019/07/03/理解Canvas的save和restore/index.html">
 <meta property="og:site_name" content="前端小生">
-<meta property="og:description" content="前端小生，慢慢地敲啊敲，HTML，CSS,JAVSCRIPT,VUE。一入前端深似海，从此代码伴我闯荡！">
+<meta property="og:description" content="🙂简述之前写过一个基于canvas实现的共享写作画板应用，当时在写这个应用的有画板绘制的“前进”和“后退”功能，当时查了MDN上的Canvas文档，看到了有save()和restore()两个方法。文档上是这样解释的使用 save() 方法保存默认的状态，使用 restore()进行恢复当时寻思着或许可以用这两个方法实现，可是最后哦用的时候却与预期的结果截然相反。这篇文章我们来了解一下Cavas">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/7/3/16bb7138fc77ddc7?w=450&h=486&f=png&s=42528">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/7/3/16bb727406f788ef?w=431&h=326&f=jpeg&s=32416">
+<meta property="og:updated_time" content="2019-07-03T12:17:36.901Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端小生">
-<meta name="twitter:description" content="前端小生，慢慢地敲啊敲，HTML，CSS,JAVSCRIPT,VUE。一入前端深似海，从此代码伴我闯荡！">
+<meta name="twitter:title" content="理解canvas的save和restore">
+<meta name="twitter:description" content="🙂简述之前写过一个基于canvas实现的共享写作画板应用，当时在写这个应用的有画板绘制的“前进”和“后退”功能，当时查了MDN上的Canvas文档，看到了有save()和restore()两个方法。文档上是这样解释的使用 save() 方法保存默认的状态，使用 restore()进行恢复当时寻思着或许可以用这两个方法实现，可是最后哦用的时候却与预期的结果截然相反。这篇文章我们来了解一下Cavas">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/7/3/16bb7138fc77ddc7?w=450&h=486&f=png&s=42528">
 
 
 
@@ -124,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="https://forrestyuan.github.io/tags/前端大法/">
+  <link rel="canonical" href="https://forrestyuan.github.io/2019/07/03/理解Canvas的save和restore/">
 
 
 
@@ -158,7 +163,7 @@ var _hmt = _hmt || [];
 
 
 
-  <title>标签: 前端大法 | 前端小生</title>
+  <title>理解canvas的save和restore | 前端小生</title>
   
 
 
@@ -177,7 +182,7 @@ var _hmt = _hmt || [];
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -313,52 +318,221 @@ var _hmt = _hmt || [];
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>前端大法<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://forrestyuan.github.io/2019/07/03/理解Canvas的save和restore/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ForrestYuan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端小生">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/01/11/CommonJS-AMD-CMD-浅析/" itemprop="url">
-              
-                <span itemprop="name">CommonJS,AMD,CMD 浅析</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">理解canvas的save和restore</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-01-11T20:48:48+08:00" content="2018-01-11">
-          01-11
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T19:57:45+08:00">
+                2019-07-03
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="🙂简述"><a href="#🙂简述" class="headerlink" title="🙂简述"></a>🙂简述</h2><p>之前写过一个<a href="https://juejin.im/post/5ce2a392f265da1b91636586" target="_blank" rel="noopener"><strong>基于canvas实现的共享写作画板应用</strong></a>，当时在写这个应用的有画板绘制的“前进”和“后退”功能，当时查了MDN上的Canvas文档，看到了有save()和restore()两个方法。文档上是这样解释的<code>使用 save() 方法保存默认的状态，使用 restore()进行恢复</code>当时寻思着或许可以用这两个方法实现，可是最后哦用的时候却与预期的结果截然相反。这篇文章我们来了解一下Cavas的save() 和 restore();</p>
+<h2 id="🙂较规范的restore（）和-save-解释"><a href="#🙂较规范的restore（）和-save-解释" class="headerlink" title="🙂较规范的restore（）和 save()解释"></a>🙂较规范的restore（）和 save()解释</h2><p>save()和restore()方法只会在有效范围内生效，它是绘制状态的存储器，并不是画布内容的存储器。它是基于状态记录的。<br>Canvas Context维持着绘制状态的堆栈。区分绘制状态：  </p>
+<ul>
+<li>当前矩阵变换<code>例如：平移translate()，缩放scale()，以及旋转rotate()等</code></li>
+<li>剪切区域<code>clip()</code></li>
+<li>以下属性值：<br><code>strokeStyle，fillStyle，globalAlpha，lineWidth，lineCap，lineJoin，miterLimit，shadowOffsetX，shadowOffsetY，shadowBlur，shadowColor，globalCompositeOperation，font，textAlign，textBaseline。</code></li>
+<li>路径和位图不是绘图状态的一部分，使用<code>save()和restore()</code>不会生效。路径是持久的，只能使用beginPath（）方法重置，位图是画布的属性，而非上下文。</li>
+<li><code>context.save()</code>将当前状态压入堆栈。<code>context.restore()</code>弹出堆栈上的顶级状态，将上下文恢复到该状态。</li>
+</ul>
+<h2 id="🙂介绍一下场景吧"><a href="#🙂介绍一下场景吧" class="headerlink" title="🙂介绍一下场景吧"></a>🙂介绍一下场景吧</h2><h3 id="✈“-变换”-场景"><a href="#✈“-变换”-场景" class="headerlink" title="✈“ 变换” 场景"></a>✈“ 变换” 场景</h3><p>一个canvas只有一个2d上下文，<code>save()和restore()</code>的使用场景也很广泛,例如 “变换”状态的用途。<br>当你执行“变换”操作时，整个上下文的坐标系都将会改变。“变换”之后，我们需要将坐标系恢复到原有正常的状态，这时候就需要使用<code>save()和restore()</code>了。如下图：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/7/3/16bb7138fc77ddc7?w=450&amp;h=486&amp;f=png&amp;s=42528" alt="效果图"></p>
+<p>我们看到在调用了<code>restore()</code>绘制的图形并没有发生变化，只是绘制状态发生了变化。因为绘制好的图形并不属于绘制状态。而<code>restore()和save()</code>只作用于绘制状态。<br>在我的那个<a href="https://juejin.im/post/5ce2a392f265da1b91636586" target="_blank" rel="noopener"><strong>基于canvas实现的共享写作画板应用</strong></a>中我想实现<strong>撤销</strong>和<strong>恢复</strong>绘制内容并没有起作用正式因为这个原因，绘制的内容并不属于绘制状态，所以无法撤销绘制的内容，或者恢复撤销的内容。</p>
+<h2 id="😃码字不如堆码"><a href="#😃码字不如堆码" class="headerlink" title="😃码字不如堆码"></a>😃码字不如堆码</h2><p>我们不如简单的写一下如何使用<code>save()和restore()</code>的代码。</p>
+<h3 id="💻HTML-code"><a href="#💻HTML-code" class="headerlink" title="💻HTML code"></a>💻HTML code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">        &lt;title&gt;Canvas Test&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;canvas id=&quot;canvas&quot; width=&quot;320&quot; height=&quot;200&quot;&gt;</span><br><span class="line">                 This text is displayed if your browser does not support HTML5 Canvas.</span><br><span class="line">            &lt;/canvas&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="javscript-code"><a href="#javscript-code" class="headerlink" title="javscript code"></a>javscript code</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas,ctx;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span><br><span class="line">    ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line">    draw();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//初始的样式（绘制状态）并绘制矩形</span></span><br><span class="line">    ctx.fillStyle = <span class="string">'#FA6900'</span>;</span><br><span class="line">    ctx.shadowOffsetX = <span class="number">5</span>;</span><br><span class="line">    ctx.shadowOffsetY = <span class="number">5</span>;</span><br><span class="line">    ctx.shadowBlur    = <span class="number">4</span>;</span><br><span class="line">    ctx.shadowColor   = <span class="string">'rgba(204, 204, 204, 0.5)'</span>;</span><br><span class="line">    ctx.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">15</span>,<span class="number">150</span>);</span><br><span class="line">    ctx.save(); <span class="comment">//保存上述设置的绘制状态</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//重新定义新的绘制状态，并绘制矩形</span></span><br><span class="line">    ctx.fillStyle = <span class="string">'#E0E4CD'</span>;</span><br><span class="line">    ctx.shadowOffsetX = <span class="number">10</span>;</span><br><span class="line">    ctx.shadowOffsetY = <span class="number">10</span>;</span><br><span class="line">    ctx.shadowBlur    = <span class="number">4</span>;</span><br><span class="line">    ctx.shadowColor   = <span class="string">'rgba(204, 204, 204, 0.5)'</span>;</span><br><span class="line">    ctx.fillRect(<span class="number">30</span>,<span class="number">0</span>,<span class="number">30</span>,<span class="number">150</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//绘制完之后，恢复到初始的绘制状态，继续进行绘画。并绘制圆形，并不会恢复初始状态下绘制的矩形。</span></span><br><span class="line">    ctx.restore();</span><br><span class="line">    ctx.beginPath();</span><br><span class="line">    ctx.arc(<span class="number">305</span>, <span class="number">75</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI*<span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line">    ctx.closePath();</span><br><span class="line">    ctx.fill();</span><br><span class="line">    &#125;</span><br><span class="line">    init();</span><br></pre></td></tr></table></figure>
+<p>上述代码的效果如下：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/7/3/16bb727406f788ef?w=431&amp;h=326&amp;f=jpeg&amp;s=32416" alt="效果图"><br>我们发现最后绘制的圆形的填充色和阴影和第一个矩形的保持了一致，这是因为restore之后，使用了初始绘制状态。</p>
+<h2 id="😭后话"><a href="#😭后话" class="headerlink" title="😭后话"></a>😭后话</h2><p>以上就是对Canvas的<code>save()和restore()</code>的介绍。我也是在阅读了一篇外国作者写的一篇blog才理解过来了这个的真实作用。如果有误或者有更好的理解，不妨留言指出和评论。完结撒花<em>★,°</em>:.☆(￣▽￣)/$:<em>.°★</em> 。</p>
+<hr>
+<p><code>参考文献：Understanding save() and restore() for the Canvas Context (July 10, 2010 by James Litten)</code></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="ForrestYuan 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="ForrestYuan 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web前端/" rel="tag"># web前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/实现共享协作的画板（简版石墨文档的白板）/" rel="next" title="实现共享协作的画板（简版石墨文档的白板）">
+                <i class="fa fa-chevron-left"></i> 实现共享协作的画板（简版石墨文档的白板）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -366,6 +540,10 @@ var _hmt = _hmt || [];
 
 
           
+
+  
+
+
 
         </div>
         
@@ -386,8 +564,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -471,6 +658,22 @@ var _hmt = _hmt || [];
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#🙂简述"><span class="nav-number">1.</span> <span class="nav-text">🙂简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#🙂较规范的restore（）和-save-解释"><span class="nav-number">2.</span> <span class="nav-text">🙂较规范的restore（）和 save()解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#🙂介绍一下场景吧"><span class="nav-number">3.</span> <span class="nav-text">🙂介绍一下场景吧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#✈“-变换”-场景"><span class="nav-number">3.1.</span> <span class="nav-text">✈“ 变换” 场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#😃码字不如堆码"><span class="nav-number">4.</span> <span class="nav-text">😃码字不如堆码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#💻HTML-code"><span class="nav-number">4.1.</span> <span class="nav-text">💻HTML code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javscript-code"><span class="nav-number">4.2.</span> <span class="nav-text">javscript code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#😭后话"><span class="nav-number">5.</span> <span class="nav-text">😭后话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -612,6 +815,10 @@ var _hmt = _hmt || [];
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
